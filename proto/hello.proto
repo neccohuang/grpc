@@ -1,0 +1,23 @@
+//這邊使用 proto3 的格式 也就是 protobuf 第三版的意思，要注意，第二版跟第三版有一些語法上的差異喔
+syntax = "proto3";
+
+package echo;
+option go_package = ".;hello";
+
+//定義了一個 EchoServer
+service Echo {
+    rpc Echo (EchoRequest) returns(EchoReply){}
+}
+
+//定義了 Echo Server EchoRequest
+message EchoRequest {
+    int64 num1 = 1;
+    int64 num2 = 2;
+}
+
+//定義了 Echo Response
+//這裡多回傳了一個 叫做 unixtime
+message EchoReply {
+    int64 sum = 1;
+    int64 unixtime = 2;
+}
